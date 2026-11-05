@@ -1,0 +1,7 @@
+{
+  "description": "List the Ways: tight jump cuts at list-item boundaries, slow push-in then snap back, one big word at a time, optional hook text and a 'DROP KEYWORD BELOW' end card. Best for counted advice (7 ways, 5 mistakes).",
+  "cuts": {"hook_shot_min_s": 3.5, "shot_min_s": 4.5, "shot_target_s": 7.0, "shot_max_s": 11.0},
+  "zoom": {"mode": "ramp", "base": 1.0, "max": 1.4, "ramp_s": 3.3},
+  "captions": {"mode": "word", "words_per_chunk": 1, "size_px": 100},
+  "end_card": {"text_template": "DROP {KEYWORD} BELOW"}
+}

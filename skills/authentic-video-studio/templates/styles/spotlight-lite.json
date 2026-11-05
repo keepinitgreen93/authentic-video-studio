@@ -1,0 +1,10 @@
+{
+  "description": "Spotlight Lite: presenter in a window over a branded moving-grid backdrop, opening zoom-out, karaoke captions on a dark strip with the spoken word in the accent color. FFmpeg-only; no Node needed.",
+  "cuts": {"enabled": false},
+  "zoom": {"mode": "open", "open_from": 1.35, "open_s": 0.85},
+  "layout": {"mode": "window", "window": {"x": 70, "y": 330, "w": 940, "h": 1180}},
+  "captions": {"mode": "karaoke", "max_words": 4, "size_px": 64, "y_frac": 0.84, "case": "as_spoken", "font_role": "body",
+               "pop": {"enabled": false}, "stroke_px": 0, "shadow_px": 0,
+               "strip": {"enabled": true, "color": "#0B0F19", "opacity": 0.82, "padding_px": 22}},
+  "end_card": {"text_template": "{TEXT}", "y_frac": 0.12}
+}

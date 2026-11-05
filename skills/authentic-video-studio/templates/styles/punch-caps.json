@@ -1,0 +1,10 @@
+{
+  "description": "Punch Caps: very tight jump cuts with an alternating 105% punch-in, short ALL CAPS caption chunks with a heavy outline, plus an .srt file. Best for fast how-to and product education.",
+  "cleanup": {"max_gap_keep_s": 0.2, "pad_lead_s": 0.04, "pad_tail_s": 0.06},
+  "cuts": {"hook_shot_min_s": 2.0, "shot_min_s": 2.2, "shot_target_s": 3.4, "shot_max_s": 5.5},
+  "zoom": {"mode": "alternate", "base": 1.0, "max": 1.05},
+  "captions": {"mode": "chunk", "words_per_chunk": 3, "max_words": 3, "case": "upper", "size_px": 92, "stroke_px": 8,
+               "y_frac": 0.72, "pop": {"enabled": false}, "emphasis": {"numerals": false}},
+  "end_card": {"text_template": "{TEXT}"},
+  "srt": true
+}

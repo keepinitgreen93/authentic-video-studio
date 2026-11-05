@@ -1,0 +1,12 @@
+{
+  "name": "authentic-video-studio",
+  "description": "Branded short-form video editing skill",
+  "owner": {"name": "Truly Authentic Marketing"},
+  "plugins": [
+    {
+      "name": "authentic-video-studio",
+      "source": "./",
+      "description": "Edit raw talking-head videos into branded vertical short-form videos. Guided branding onboarding."
+    }
+  ]
+}

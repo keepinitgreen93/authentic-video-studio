@@ -1,0 +1,13 @@
+name: authentic-video-studio
+version: 0.1.0
+description: Edit raw talking-head videos into branded vertical short-form videos with local FFmpeg and Whisper. Branding onboarding from a website, logo, brand kit or plain answers. Windows, macOS, Linux. No API keys.
+author: Truly Authentic Marketing
+license: MIT
+homepage: https://github.com/keepinitgreen93/authentic-video-studio
+manifest_version: 2
+tags: [video, ffmpeg, captions, branding, short-form]
+provides_tools:
+  - video_studio_doctor
+  - video_studio_brand
+  - video_studio_styles
+  - video_studio_render

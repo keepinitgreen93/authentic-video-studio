@@ -1,0 +1,20 @@
+# EXAMPLE PRESET ONLY. Shows what a filled-in brand.yaml looks like, using Truly Authentic Marketing's own
+# public palette. Palette not yet confirmed by the owner. Copy to your brand folder and replace every value,
+# or run the branding onboarding to build your own. No logo or font files are bundled.
+schema: 1
+name: Truly Authentic Marketing
+tagline: ""
+website: ""
+handle: ""
+colors:
+  primary: "#4F46E5"
+  accent: "#22C55E"
+  background: "#FFFFFF"
+  text: "#020617"
+fonts:
+  heading: {family: Poppins, file: null}
+  body: {family: Inter, file: null}
+logo: {file: null, position: top-right, scale: 0.16, show_in_videos: false}
+captions: {case: as_spoken, highlight_color: "#22C55E", stroke_color: "#020617"}
+cta: {text: "Follow for more", keyword: "", end_card: "DROP {keyword} BELOW"}
+voice: {tone: "", headline_samples: []}

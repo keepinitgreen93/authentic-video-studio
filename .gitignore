@@ -1,0 +1,31 @@
+# environments and caches
+.venv/
+venv/
+__pycache__/
+*.pyc
+.cache/
+
+# your footage and outputs
+demo-output/
+*_work/
+*_stills/
+out/
+renders/
+inputs/
+*.mov
+!examples/sample/*.mp4
+
+# your brand files and fonts (may be licensed or client-owned)
+/brand/
+/brand-*/
+brand-preview.png
+extract-report.json
+fonts/
+!skills/authentic-video-studio/templates/**
+
+# secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key

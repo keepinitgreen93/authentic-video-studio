@@ -1,0 +1,11 @@
+{
+  "name": "authentic-video-studio",
+  "displayName": "Authentic Video Studio",
+  "version": "0.1.0",
+  "description": "Edit raw talking-head videos into branded vertical short-form videos with local FFmpeg and Whisper. Guided branding onboarding. Windows, macOS, Linux.",
+  "author": {"name": "Truly Authentic Marketing"},
+  "homepage": "https://github.com/keepinitgreen93/authentic-video-studio",
+  "repository": "https://github.com/keepinitgreen93/authentic-video-studio",
+  "license": "MIT",
+  "keywords": ["video", "ffmpeg", "captions", "branding", "short-form"]
+}

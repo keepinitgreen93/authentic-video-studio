@@ -1,0 +1,49 @@
+# Synthetic example brand. Not a real company.
+schema: 1
+name: Synthetic Co (example)
+tagline: ''
+website: ''
+handle: ''
+colors:
+  primary: '#0E7C86'
+  accent: '#F26B21'
+  background: '#FFFFFF'
+  text: '#111827'
+fonts:
+  heading:
+    family: Poppins
+    file: null
+    source: Google Fonts substitute (Poppins 800)
+    license: Open font licence (Google Fonts)
+    note: ''
+    requested: null
+  body:
+    family: Inter
+    file: null
+    source: Google Fonts substitute (Inter 500)
+    license: Open font licence (Google Fonts)
+    note: ''
+    requested: null
+logo:
+  file: logo.png
+  position: top-right
+  scale: 0.16
+  show_in_videos: true
+captions:
+  case: as_spoken
+  highlight_color: '#F26B21'
+  stroke_color: '#000000'
+cta:
+  text: Follow for more
+  keyword: GUIDE
+  end_card: DROP {keyword} BELOW
+voice:
+  tone: ''
+  headline_samples: []
+provenance:
+  primary: most prominent brand colour (logo/kit)
+  accent: next most prominent distinct colour
+  background: default (not found)
+  text: chosen for contrast with background
+notes:
+- Example brand built from a synthetic logo. Fonts download when you run the onboarding.

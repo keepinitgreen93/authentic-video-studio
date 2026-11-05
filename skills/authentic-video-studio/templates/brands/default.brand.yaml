@@ -1,0 +1,18 @@
+# Neutral fallback brand. Used for any value missing from your brand.yaml.
+schema: 1
+name: Your Brand
+tagline: ""
+website: ""
+handle: ""
+colors:
+  primary: "#2563EB"
+  accent: "#F59E0B"
+  background: "#FFFFFF"
+  text: "#111827"
+fonts:
+  heading: {family: Poppins, file: null}
+  body: {family: Inter, file: null}
+logo: {file: null, position: top-right, scale: 0.16, show_in_videos: false}
+captions: {case: as_spoken, highlight_color: "#F59E0B", stroke_color: "#000000"}
+cta: {text: "Follow for more", keyword: "", end_card: "{text}"}
+voice: {tone: "", headline_samples: []}
