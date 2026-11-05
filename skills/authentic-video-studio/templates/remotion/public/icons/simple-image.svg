@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="300" viewBox="0 0 360 300" fill="none">
+  <defs>
+    <linearGradient id="simple-image-blue" gradientUnits="userSpaceOnUse" x1="40" y1="258" x2="316" y2="42">
+      <stop offset="0" stop-color="#9CA3AF"/>
+      <stop offset="0.48" stop-color="#DEE1E6"/>
+      <stop offset="1" stop-color="#FFFFFF"/>
+    </linearGradient>
+    <clipPath id="simple-image-window">
+      <rect x="56" y="59" width="248" height="182" rx="12"/>
+    </clipPath>
+  </defs>
+  <rect x="39" y="42" width="282" height="216" rx="27" fill="url(#simple-image-blue)"/>
+  <rect x="56" y="59" width="248" height="182" rx="12" fill="#15202D"/>
+  <g clip-path="url(#simple-image-window)">
+    <circle cx="246" cy="104" r="21" fill="#FFFFFF"/>
+    <path d="M171 218L217 151C220 147 225 147 229 151L315 237V249H153Z" fill="#657486"/>
+    <path d="M46 222L125 132C129 128 135 128 139 132L206 202L224 183C228 179 234 179 238 183L313 247H46Z" fill="url(#simple-image-blue)"/>
+  </g>
+</svg>

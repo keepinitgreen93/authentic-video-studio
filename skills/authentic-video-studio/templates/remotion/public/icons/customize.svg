@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="300" viewBox="0 0 360 300" fill="none">
+  <defs>
+    <linearGradient id="customize-blue" gradientUnits="userSpaceOnUse" x1="44" y1="269" x2="314" y2="33">
+      <stop offset="0" stop-color="#9CA3AF"/>
+      <stop offset="0.48" stop-color="#DEE1E6"/>
+      <stop offset="1" stop-color="#FFFFFF"/>
+    </linearGradient>
+  </defs>
+  <path d="M179 30C101 30 43 82 43 150C43 218 95 268 165 268H224C245 268 254 254 250 239L244 218C241 207 249 197 262 198L278 199C303 201 321 179 317 155C306 82 252 30 179 30Z" fill="url(#customize-blue)"/>
+  <circle cx="111" cy="78" r="17" fill="#15202D"/>
+  <circle cx="82" cy="135" r="17" fill="#657486"/>
+  <circle cx="97" cy="199" r="17" fill="#15202D"/>
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M166 88H190L236 212H208L198 183H157L147 212H119L166 88ZM165 160H190L178 118L165 160Z" fill="#15202D"/>
+</svg>

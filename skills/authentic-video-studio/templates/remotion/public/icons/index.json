@@ -1,0 +1,77 @@
+{
+  "icons": [
+    {
+      "id": "customize",
+      "path": "public/icons/customize.svg",
+      "suggestedMeaning": "Customizing settings",
+      "enginePublicPath": "icons/customize.svg"
+    },
+    {
+      "id": "overthink",
+      "path": "public/icons/overthink.svg",
+      "suggestedMeaning": "Overthinking or uncertainty",
+      "enginePublicPath": "icons/overthink.svg"
+    },
+    {
+      "id": "reading-level",
+      "path": "public/icons/reading-level.svg",
+      "suggestedMeaning": "Reading level or accessible writing",
+      "enginePublicPath": "icons/reading-level.svg"
+    },
+    {
+      "id": "simple-image",
+      "path": "public/icons/simple-image.svg",
+      "suggestedMeaning": "A simple image or visual overlay",
+      "enginePublicPath": "icons/simple-image.svg"
+    },
+    {
+      "id": "stunning-visuals",
+      "path": "public/icons/stunning-visuals.svg",
+      "suggestedMeaning": "Screen visuals or elaborate editing",
+      "enginePublicPath": "icons/stunning-visuals.svg"
+    },
+    {
+      "id": "business",
+      "path": "public/icons/business.svg",
+      "suggestedMeaning": "Business, products, or services",
+      "enginePublicPath": "icons/business.svg"
+    },
+    {
+      "id": "on-camera",
+      "path": "public/icons/on-camera.svg",
+      "suggestedMeaning": "A person speaking on camera",
+      "enginePublicPath": "icons/on-camera.svg"
+    },
+    {
+      "id": "scissors",
+      "path": "public/icons/scissors.svg",
+      "suggestedMeaning": "Removing unwanted material",
+      "enginePublicPath": "icons/scissors.svg"
+    },
+    {
+      "id": "text-and-image",
+      "path": "public/icons/text-and-image.svg",
+      "suggestedMeaning": "Text with an image",
+      "enginePublicPath": "icons/text-and-image.svg"
+    },
+    {
+      "id": "headphones",
+      "path": "public/icons/headphones.svg",
+      "enginePublicPath": "icons/headphones.svg",
+      "suggestedMeaning": "Listening to an audio lesson"
+    },
+    {
+      "id": "clear-answer",
+      "path": "public/icons/clear-answer.svg",
+      "enginePublicPath": "icons/clear-answer.svg",
+      "suggestedMeaning": "Clear answers and understanding"
+    },
+    {
+      "id": "rules",
+      "path": "public/icons/rules.svg",
+      "enginePublicPath": "icons/rules.svg",
+      "suggestedMeaning": "Instructions or an editing blueprint"
+    }
+  ],
+  "note": "Suggested meanings guide editorial selection; use a different suitable image when new narration needs it. enginePublicPath is an intended installer destination, not an installed-file claim."
+}

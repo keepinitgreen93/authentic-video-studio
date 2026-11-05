@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Authentic Video Studio installer for macOS and Linux. Safe to run again.
-#   ./install.sh [--model small.en|none] [--check-only] [--install-skill claude|hermes|both]
+#   ./install.sh [--model small.en|none] [--check-only] [--skip-remotion] [--install-skill claude|hermes|both]
 set -euo pipefail
 
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -9,13 +9,14 @@ VENV="$APP_HOME/venv"
 VENV_PY="$VENV/bin/python"
 SKILL="$REPO/skills/authentic-video-studio"
 VS="$SKILL/scripts/vs.py"
-MODEL="small.en"; CHECK=0; INSTALL_SKILL="none"
+MODEL="small.en"; CHECK=0; SKIP_REMOTION=0; INSTALL_SKILL="none"
 unset PYTHONPATH
 
 while [ $# -gt 0 ]; do
   case "$1" in
     --model) MODEL="$2"; shift 2;;
     --check-only) CHECK=1; shift;;
+    --skip-remotion) SKIP_REMOTION=1; shift;;
     --install-skill) INSTALL_SKILL="$2"; shift 2;;
     -h|--help) sed -n 2,3p "$0"; exit 0;;
     *) echo "unknown option $1"; exit 2;;
@@ -67,6 +68,15 @@ EOF
   step "Default fonts and speech model"
   if [ "$MODEL" = "none" ]; then "$VENV_PY" -I "$VS" setup || warn "font setup had problems (offline?)"
   else "$VENV_PY" -I "$VS" setup --model "$MODEL" || warn "setup had problems (offline?). Rerun later."; fi
+
+  if [ "$SKIP_REMOTION" -eq 1 ]; then warn "skipping Node and Remotion (--skip-remotion). Styles spotlight and minimalist will not run."
+  else
+    step "Node.js, Remotion packages and headless Chrome (for spotlight and minimalist)"
+    if [ "$OS" = "Linux" ]; then
+      warn "Linux needs a few system libraries for headless Chrome. On Debian/Ubuntu: sudo apt install -y libnss3 libdbus-1-3 libatk1.0-0 libgbm-dev libasound2t64 libxrandr2 libxkbcommon-dev libxfixes3 libxcomposite1 libxdamage1 libatk-bridge2.0-0 libpango-1.0-0 libcairo2 libcups2 (libasound2 on older releases)"
+    fi
+    "$VENV_PY" -I "$VS" setup-remotion --install-node || warn "Remotion setup did not finish. The other styles work. Retry: $VENV_PY $VS setup-remotion --install-node"
+  fi
 
   if [ "$INSTALL_SKILL" != "none" ]; then
     step "Installing the skill into your agent"

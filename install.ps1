@@ -4,12 +4,16 @@
 
 .DESCRIPTION
   Installs or verifies: FFmpeg (winget, then scoop, then choco, then direct download), uv, a private
-  Python 3.12 environment, the Python packages, default fonts, and the speech model. Safe to run again.
+  Python 3.12 environment, the Python packages, default fonts, and the speech model. Then Node.js LTS (only if
+  missing, downloaded into the studio folder, no admin rights), the Remotion packages and its headless Chrome for the
+  spotlight and minimalist styles. Safe to run again.
 
   Run from the repo folder:
     powershell -ExecutionPolicy Bypass -File .\install.ps1
 
 .PARAMETER Model       Speech model to pre-download. Default small.en. Use "none" to skip.
+.PARAMETER SkipRemotion  Do not set up Node and Remotion. The spotlight and minimalist styles then stay unavailable;
+                 spotlight-lite (FFmpeg only) still works.
 .PARAMETER CheckOnly   Do not install anything. Run the doctor and exit.
 .PARAMETER InstallSkill  Copy the skill into an agent: claude, hermes, both, or none (default).
 #>
@@ -17,6 +21,7 @@
 param(
   [string]$Model = "small.en",
   [switch]$CheckOnly,
+  [switch]$SkipRemotion,
   [ValidateSet("none", "claude", "hermes", "both")][string]$InstallSkill = "none"
 )
 $ErrorActionPreference = "Stop"
@@ -126,6 +131,14 @@ if (-not $CheckOnly) {
   if ($Model -ne "none") { $setupArgs += @("--model", $Model) }
   & $VenvPy -I @setupArgs
   if ($LASTEXITCODE -ne 0) { Warn "setup step had problems (offline?). Rendering still works with system fonts; rerun later." }
+
+  # 4b. Node + Remotion (spotlight and minimalist styles) ------------------
+  if ($SkipRemotion) { Warn "skipping Node and Remotion (-SkipRemotion). Styles spotlight and minimalist will not run." }
+  else {
+    Step "Node.js, Remotion packages and headless Chrome (for spotlight and minimalist)"
+    & $VenvPy -I $Vs setup-remotion --install-node
+    if ($LASTEXITCODE -ne 0) { Warn "Remotion setup did not finish. The other styles work. Retry later: $VenvPy $Vs setup-remotion --install-node" }
+  }
 
   # 5. optional: copy skill into an agent -----------------------------------
   if ($InstallSkill -ne "none") {

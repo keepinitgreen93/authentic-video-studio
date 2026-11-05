@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="300" viewBox="0 0 360 300" fill="none">
+  <defs>
+    <linearGradient id="clear-writing-blue" gradientUnits="userSpaceOnUse" x1="34" y1="250" x2="318" y2="41">
+      <stop offset="0" stop-color="#9CA3AF"/>
+      <stop offset="0.48" stop-color="#DEE1E6"/>
+      <stop offset="1" stop-color="#FFFFFF"/>
+    </linearGradient>
+  </defs>
+  <path d="M180 61C139 39 88 39 43 59V231C92 214 137 218 180 245C223 218 268 214 317 231V59C272 39 221 39 180 61Z" fill="url(#clear-writing-blue)" stroke="url(#clear-writing-blue)" stroke-width="10" stroke-linejoin="round"/>
+  <path d="M166 79C132 63 98 63 61 72V208C101 199 134 208 166 226Z" fill="#15202D"/>
+  <path d="M194 79C228 63 262 63 299 72V208C259 199 226 208 194 226Z" fill="#15202D"/>
+  <g stroke="url(#clear-writing-blue)" stroke-width="12" stroke-linecap="round">
+    <path d="M82 104H132"/>
+    <path d="M82 134H145"/>
+    <path d="M82 164H124"/>
+  </g>
+  <text x="246" y="171" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="90" font-weight="700" fill="#FFFFFF">8</text>
+</svg>

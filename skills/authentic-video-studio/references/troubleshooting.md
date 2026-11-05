@@ -24,3 +24,16 @@
 ## Uninstall
 
 Delete `%LOCALAPPDATA%\authentic-video-studio` (Windows) or `~/.local/share/authentic-video-studio` (macOS/Linux). Remove the skill folder from your agent. FFmpeg and uv stay installed; remove them with winget/brew/apt if you want.
+
+## spotlight and minimalist (Remotion)
+
+| Symptom | Fix |
+|---|---|
+| `Style 'spotlight' needs Node and Remotion, which are not ready` | Run `python scripts/vs.py setup-remotion --install-node`, then `vs.py doctor`. Offline: use `spotlight-lite`. |
+| `npm ci failed` | Network or proxy problem. Run `setup-remotion` again. Behind a proxy set `HTTPS_PROXY`. |
+| `Headless browser download failed` | Retry. The file comes from Google storage via Remotion; a firewall may block it. |
+| Linux: `error while loading shared libraries` from Chrome | Install the libraries listed in INSTALL.md step 2. |
+| `Remotion render failed ... timeout` | Close other heavy programs, or lower the load: the render uses 2 browser tabs. Retry. |
+| Text looks wrong after a font change | The brand font file is copied for each render. Run `vs.py brand preview brand` to check the font loaded. |
+| Windows: `node` found in the wrong version | The studio prefers its own portable Node in `%LOCALAPPDATA%\authentic-video-studio\node`. Delete that folder to fall back to the system Node. |
+| `minimalist` output has no takeovers | The clip has no sentence with three seconds of speaker before it. Use a longer clip or a plan file. |

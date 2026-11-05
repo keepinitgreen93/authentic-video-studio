@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Offline smoke test: validates styles, brand loading, logo palette, brand_extract on a synthetic logo,
-and (if FFmpeg is present) a 6 second render. No network needed except optional font fetch.
+the Remotion planners, and (if FFmpeg is present) a 6 second render. No network needed except optional font fetch.
 
   python tests/smoke_test.py
 """
@@ -32,6 +32,29 @@ def main() -> int:
     for s in C.list_styles():
         st = C.load_style(s, brand)
         check(f"style {s} resolves placeholders", "{brand." not in json.dumps(st))
+    check("remotion styles present", {"spotlight", "minimalist"} <= set(C.list_styles()), str(C.list_styles()))
+    rem = ROOT / "skills" / "authentic-video-studio" / "templates" / "remotion"
+    for rel in ("package.json", "package-lock.json", "src/index.tsx", "src/spotlight/Spotlight.tsx", "src/minimalist/Minimalist.tsx",
+                "src/minimalist/plan.mjs", "public/icons/scissors.svg", "validate-plan.mjs"):
+        check(f"remotion file {rel}", (rem / rel).exists())
+    pj = json.loads((rem / "package.json").read_text(encoding="utf-8"))
+    check("remotion pinned", pj["dependencies"]["remotion"] == pj["dependencies"]["@remotion/cli"] and pj["dependencies"]["remotion"][0].isdigit())
+    try:
+        import vs_remotion as R
+        b = C.load_brand(ROOT / "examples" / "brand-synthetic")
+        with tempfile.TemporaryDirectory() as td:
+            props = R.build_brand_props(b, Path(td), ["A", "B"], 3.0, "DROP X BELOW", 2.4, True)
+            check("brand props: colors from brand.yaml", props["colors"]["primary"] == b["colors"]["primary"])
+            check("brand props: logo staged", bool(props["logo"]["file"]) and (Path(td) / props["logo"]["file"]).exists())
+            check("brand props: dark card readable", C.contrast(props["theme"]["ink"], props["theme"]["label"]) >= 7)
+        words = [{"w": w, "os": i * 0.5 + (0.0 if i < 4 else 0.6 if i < 14 else 1.2 if i < 20 else 1.8), "oe": i * 0.5 + 0.4 + (0.0 if i < 4 else 0.6 if i < 14 else 1.2 if i < 20 else 1.8)} for i, w in enumerate(
+            "Cut every long pause. Add captions that people can read with the sound off. Keep your hook under four seconds. That is the idea.".split())]
+        job = R.plan_spotlight(words, words[-1]["oe"], "as_spoken", set())
+        check("spotlight plan has scenes and cards", len(job["scenes"]) == 2 and len(job["beats"]) >= 1)
+        plan = R.plan_minimalist(words, int(words[-1]["oe"] * 30) + 30, 0.0, 0.0, 1.0)
+        check("minimalist plan is a dict", "takeovers" in plan and plan["canvas"] == "portrait")
+    except Exception as e:  # noqa
+        check("vs_remotion planners", False, f"{type(e).__name__}: {e}")
     skill = (ROOT / "skills" / "authentic-video-studio" / "SKILL.md").read_text(encoding="utf-8")
     check("SKILL.md frontmatter", skill.startswith("---\nname: authentic-video-studio\n") and "\ndescription: " in skill)
     check("SKILL.md under 500 lines", skill.count("\n") < 500)

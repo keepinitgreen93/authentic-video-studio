@@ -3,6 +3,7 @@
 
   python vs.py doctor [--json]          check dependencies
   python vs.py setup [--model small.en] fetch default fonts (and the speech model)
+  python vs.py setup-remotion [--install-node]   Node, npm packages and headless Chrome for spotlight and minimalist
   python vs.py brand --url https://... | --logo file | --kit file | --name ... --primary ...   (branding onboarding)
   python vs.py brand edit brand --set colors.primary=#E11D48
   python vs.py brand preview brand      write brand-preview.png
@@ -13,6 +14,7 @@
 """
 from __future__ import annotations
 
+import json
 import os
 import subprocess
 import sys
@@ -65,6 +67,12 @@ def main() -> int:
         return doctor.main()
     if cmd == "setup":
         return setup(rest)
+    if cmd == "setup-remotion":
+        import argparse
+        import vs_remotion
+        ap = argparse.ArgumentParser(prog="vs.py setup-remotion")
+        ap.add_argument("--install-node", action="store_true", help="download a portable Node LTS into the studio folder if Node is missing")
+        return vs_remotion.setup(ap.parse_args(rest).install_node)
     if cmd == "brand":
         import brand_extract
         return brand_extract.main(rest)
@@ -126,7 +134,12 @@ def demo(rest: list[str]) -> int:
         sys.argv = ["make_sample", "--out", str(clip)]
         make_sample.main()
     styles = a.styles.split(",") if a.styles else C.list_styles()
+    import vs_remotion
+    ready, why = vs_remotion.available()
     for s in styles:
+        if not a.styles and not ready and json.loads((C.STYLES_DIR / f"{s}.json").read_text(encoding="utf-8")).get("engine") == "remotion":
+            print(f"\n=== {s} === skipped (Node/Remotion not ready: {why})")
+            continue
         args = ["--input", str(clip), "--out", str(out / f"demo_{s}.mp4"), "--style", s, "--hook-text", "7 WAYS TO\\nEDIT FASTER",
                 "--keyword", "GUIDE", "--workdir", str(out / f"_work_{s}")]
         if a.brand:

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="300" viewBox="0 0 360 300" fill="none">
+  <defs>
+    <linearGradient id="scissors-neutral" gradientUnits="userSpaceOnUse" x1="64" y1="260" x2="291" y2="35">
+      <stop offset="0" stop-color="#9CA3AF"/>
+      <stop offset="0.48" stop-color="#DEE1E6"/>
+      <stop offset="1" stop-color="#FFFFFF"/>
+    </linearGradient>
+  </defs>
+  <g fill="url(#scissors-neutral)">
+    <path d="M110 198L279 36C285 30 292 35 289 43L264 99L133 222Z"/>
+    <path d="M250 198L81 36C75 30 68 35 71 43L96 99L227 222Z"/>
+    <circle cx="104" cy="219" r="46"/>
+    <circle cx="256" cy="219" r="46"/>
+  </g>
+  <circle cx="104" cy="219" r="25" fill="#15202D"/>
+  <circle cx="256" cy="219" r="25" fill="#15202D"/>
+  <circle cx="180" cy="151" r="13" fill="#15202D"/>
+  <circle cx="180" cy="151" r="5" fill="#FFFFFF"/>
+</svg>

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="300" viewBox="0 0 360 300" fill="none">
+  <defs>
+    <linearGradient id="on-camera-neutral" gradientUnits="userSpaceOnUse" x1="35" y1="249" x2="324" y2="49">
+      <stop offset="0" stop-color="#9CA3AF"/>
+      <stop offset="0.48" stop-color="#DEE1E6"/>
+      <stop offset="1" stop-color="#FFFFFF"/>
+    </linearGradient>
+  </defs>
+  <path d="M267 114L313 87C322 82 330 87 330 97V203C330 213 322 218 313 213L267 186Z" fill="url(#on-camera-neutral)"/>
+  <rect x="30" y="52" width="245" height="196" rx="29" fill="url(#on-camera-neutral)"/>
+  <rect x="49" y="71" width="207" height="158" rx="13" fill="#15202D"/>
+  <circle cx="152" cy="119" r="30" fill="url(#on-camera-neutral)"/>
+  <path d="M92 215V204C92 175 114 157 152 157C190 157 212 175 212 204V215Z" fill="url(#on-camera-neutral)"/>
+</svg>

@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "returnCadence": "alternating",
+  "takeovers": [
+    {"id":"centered","startFrame":70,"endFrame":220,"variant":"single-centered","words":[{"text":"Make"},{"text":"one"},{"text":"clear","emphasis":true},{"text":"point."}],"lineBreaks":[2],"icon":"icons/simple-image.svg"},
+    {"id":"side","startFrame":270,"endFrame":390,"variant":"single-side","words":[{"text":"Keep"},{"text":"your"},{"text":"message"},{"text":"simple.","emphasis":true}],"lineBreaks":[2],"icon":"icons/scissors.svg"},
+    {"id":"paired","startFrame":440,"endFrame":660,"variant":"paired","words":[{"text":"Sometimes,"},{"text":"show"},{"text":"yourself.","emphasis":true}],"lineBreaks":[1],"icon":"icons/on-camera.svg","followup":{"atFrame":550,"words":[{"text":"Other"},{"text":"times,"},{"text":"show"},{"text":"text.","emphasis":true}],"lineBreaks":[2],"icon":"icons/text-and-image.svg"}},
+    {"id":"linked-first","startFrame":730,"endFrame":840,"variant":"linked","linkId":"contrast","words":[{"text":"Let"},{"text":"the"},{"text":"idea"},{"text":"grow.","emphasis":true}],"lineBreaks":[2],"icon":"icons/overthink.svg"},
+    {"id":"linked-second","startFrame":840,"endFrame":980,"variant":"linked","linkId":"contrast","words":[{"text":"Then"},{"text":"bring"},{"text":"it"},{"text":"home.","emphasis":true}],"lineBreaks":[2],"icon":"icons/stunning-visuals.svg"}
+  ],
+  "sound": {"enabled": false}
+}

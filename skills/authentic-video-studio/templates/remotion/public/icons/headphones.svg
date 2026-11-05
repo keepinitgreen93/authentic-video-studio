@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="300" viewBox="0 0 360 300" fill="none">
+  <defs>
+    <linearGradient id="headphones-neutral" gradientUnits="userSpaceOnUse" x1="44" y1="253" x2="316" y2="32">
+      <stop offset="0" stop-color="#9CA3AF"/>
+      <stop offset="0.48" stop-color="#DEE1E6"/>
+      <stop offset="1" stop-color="#FFFFFF"/>
+    </linearGradient>
+  </defs>
+  <path d="M64 175V144C64 77 112 35 180 35C248 35 296 77 296 144V175" stroke="url(#headphones-neutral)" stroke-width="27" stroke-linecap="round"/>
+  <rect x="43" y="140" width="67" height="113" rx="26" fill="url(#headphones-neutral)"/>
+  <rect x="250" y="140" width="67" height="113" rx="26" fill="url(#headphones-neutral)"/>
+  <rect x="65" y="158" width="23" height="77" rx="11.5" fill="#15202D"/>
+  <rect x="272" y="158" width="23" height="77" rx="11.5" fill="#15202D"/>
+</svg>

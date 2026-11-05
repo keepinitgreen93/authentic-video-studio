@@ -1,0 +1,334 @@
+{
+  "schemaVersion": 1,
+  "returnCadence": "alternating",
+  "takeovers": [
+    {
+      "id": "simple-and-clear",
+      "startFrame": 43,
+      "endFrame": 158,
+      "variant": "single-centered",
+      "firstWordFrame": 55,
+      "words": [
+        {
+          "text": "Keep"
+        },
+        {
+          "text": "your"
+        },
+        {
+          "text": "videos"
+        },
+        {
+          "text": "simple",
+          "emphasis": true
+        },
+        {
+          "text": "and"
+        },
+        {
+          "text": "easy"
+        },
+        {
+          "text": "to"
+        },
+        {
+          "text": "follow.",
+          "emphasis": true
+        }
+      ],
+      "lineBreaks": [
+        4
+      ],
+      "icon": "icons/simple-image.svg"
+    },
+    {
+      "id": "less-flashy-video",
+      "startFrame": 548,
+      "endFrame": 641,
+      "variant": "linked",
+      "firstWordFrame": 568,
+      "words": [
+        {
+          "text": "Less",
+          "emphasis": true
+        },
+        {
+          "text": "flashy",
+          "emphasis": true
+        },
+        {
+          "text": "talking-head"
+        },
+        {
+          "text": "videos."
+        }
+      ],
+      "lineBreaks": [
+        2
+      ],
+      "icon": "icons/stunning-visuals.svg",
+      "linkId": "less-flashy"
+    },
+    {
+      "id": "coaches-and-consultants",
+      "startFrame": 641,
+      "endFrame": 705,
+      "variant": "linked",
+      "firstWordFrame": 641,
+      "words": [
+        {
+          "text": "For"
+        },
+        {
+          "text": "coaches",
+          "emphasis": true
+        },
+        {
+          "text": "and"
+        },
+        {
+          "text": "consultants.",
+          "emphasis": true
+        }
+      ],
+      "lineBreaks": [
+        2
+      ],
+      "icon": "icons/on-camera.svg",
+      "linkId": "less-flashy",
+      "returnStyle": "simple"
+    },
+    {
+      "id": "text-and-icon",
+      "startFrame": 806,
+      "endFrame": 913,
+      "variant": "single-centered",
+      "firstWordFrame": 818,
+      "words": [
+        {
+          "text": "Text"
+        },
+        {
+          "text": "and"
+        },
+        {
+          "text": "a"
+        },
+        {
+          "text": "simple"
+        },
+        {
+          "text": "icon"
+        },
+        {
+          "text": "explain",
+          "emphasis": true
+        },
+        {
+          "text": "your"
+        },
+        {
+          "text": "point.",
+          "emphasis": true
+        }
+      ],
+      "lineBreaks": [
+        5
+      ],
+      "icon": "icons/text-and-image.svg"
+    },
+    {
+      "id": "connected-motion-demo",
+      "startFrame": 1241,
+      "endFrame": 1451,
+      "variant": "single-centered",
+      "firstWordFrame": 1253,
+      "words": [
+        {
+          "text": "The"
+        },
+        {
+          "text": "icon"
+        },
+        {
+          "text": "and"
+        },
+        {
+          "text": "text"
+        },
+        {
+          "text": "move",
+          "emphasis": true
+        },
+        {
+          "text": "together.",
+          "emphasis": true
+        }
+      ],
+      "lineBreaks": [
+        4
+      ],
+      "icon": "icons/text-and-image.svg",
+      "returnStyle": "bridge"
+    },
+    {
+      "id": "listen-on-a-walk",
+      "startFrame": 1842,
+      "endFrame": 1968,
+      "variant": "single-side",
+      "firstWordFrame": 1854,
+      "words": [
+        {
+          "text": "Listen",
+          "emphasis": true
+        },
+        {
+          "text": "to"
+        },
+        {
+          "text": "the"
+        },
+        {
+          "text": "audio",
+          "emphasis": true
+        },
+        {
+          "text": "while"
+        },
+        {
+          "text": "you're"
+        },
+        {
+          "text": "on"
+        },
+        {
+          "text": "a"
+        },
+        {
+          "text": "walk."
+        }
+      ],
+      "lineBreaks": [
+        4
+      ],
+      "icon": "icons/headphones.svg"
+    },
+    {
+      "id": "inputs-to-blueprint",
+      "startFrame": 2293,
+      "endFrame": 2542,
+      "variant": "paired",
+      "firstWordFrame": 2313,
+      "words": [
+        {
+          "text": "Give"
+        },
+        {
+          "text": "it"
+        },
+        {
+          "text": "a"
+        },
+        {
+          "text": "raw"
+        },
+        {
+          "text": "video,",
+          "emphasis": true
+        },
+        {
+          "text": "script",
+          "emphasis": true
+        },
+        {
+          "text": "and"
+        },
+        {
+          "text": "prompt.",
+          "emphasis": true
+        }
+      ],
+      "lineBreaks": [
+        5
+      ],
+      "icon": "icons/on-camera.svg",
+      "followup": {
+        "atFrame": 2422.55,
+        "firstWordFrame": 2444,
+        "words": [
+          {
+            "text": "The"
+          },
+          {
+            "text": "blueprint",
+            "emphasis": true
+          },
+          {
+            "text": "guides"
+          },
+          {
+            "text": "your"
+          },
+          {
+            "text": "edit."
+          }
+        ],
+        "lineBreaks": [
+          2
+        ],
+        "icon": "icons/rules.svg"
+      }
+    },
+    {
+      "id": "clear-answers-build-trust",
+      "startFrame": 2700,
+      "endFrame": 2805,
+      "variant": "single-centered",
+      "firstWordFrame": 2712,
+      "words": [
+        {
+          "text": "Clear"
+        },
+        {
+          "text": "answers"
+        },
+        {
+          "text": "build"
+        },
+        {
+          "text": "trust.",
+          "emphasis": true
+        }
+      ],
+      "lineBreaks": [
+        2
+      ],
+      "icon": "icons/clear-answer.svg"
+    }
+  ],
+  "sound": {
+    "enabled": false
+  },
+  "treatmentVersion": "1.2",
+  "avatarPushes": [
+    {
+      "id": "when-the-screen-changes",
+      "startFrame": 1133,
+      "endFrame": 1241,
+      "kind": "beat"
+    },
+    {
+      "id": "to-use-this-template",
+      "startFrame": 2207,
+      "endFrame": 2293,
+      "kind": "beat",
+      "speedPerFrame": 0.0005294117647058815
+    },
+    {
+      "id": "closing-cta",
+      "startFrame": 2963,
+      "endFrame": 3298,
+      "kind": "closing"
+    }
+  ]
+}

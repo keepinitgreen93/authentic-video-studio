@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="300" viewBox="0 0 360 300" fill="none">
+  <defs>
+    <linearGradient id="stunning-visuals-blue" gradientUnits="userSpaceOnUse" x1="38" y1="272" x2="319" y2="38">
+      <stop offset="0" stop-color="#9CA3AF"/>
+      <stop offset="0.48" stop-color="#DEE1E6"/>
+      <stop offset="1" stop-color="#FFFFFF"/>
+    </linearGradient>
+    <clipPath id="stunning-visuals-screen">
+      <rect x="52" y="53" width="256" height="158" rx="10"/>
+    </clipPath>
+  </defs>
+  <rect x="158" y="220" width="44" height="44" rx="8" fill="url(#stunning-visuals-blue)"/>
+  <rect x="109" y="257" width="142" height="16" rx="8" fill="url(#stunning-visuals-blue)"/>
+  <rect x="37" y="38" width="286" height="188" rx="24" fill="url(#stunning-visuals-blue)"/>
+  <rect x="52" y="53" width="256" height="158" rx="10" fill="#15202D"/>
+  <g clip-path="url(#stunning-visuals-screen)">
+    <path d="M178 208L213 153C217 147 222 147 227 153L308 211H178Z" fill="#657486"/>
+    <path d="M48 198L121 123C125 119 131 119 135 123L186 181L211 158C215 154 220 154 224 158L315 218H48Z" fill="url(#stunning-visuals-blue)"/>
+  </g>
+  <path d="M255 72C260 95 265 100 287 105C265 110 260 115 255 138C250 115 245 110 223 105C245 100 250 95 255 72Z" fill="#FFFFFF"/>
+</svg>

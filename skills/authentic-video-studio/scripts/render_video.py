@@ -18,6 +18,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import vs_common as C  # noqa: E402
+import vs_remotion as R  # noqa: E402
 
 
 # ---------------------------------------------------------------- transcription and cleanup
@@ -266,6 +267,87 @@ def make_window_assets(style: dict, brand: dict, work: Path) -> dict:
     return {"gs": gs}
 
 
+# ---------------------------------------------------------------- Remotion styles
+def render_remotion(a, style, brand, work, out, stage1, af, out_words, total, rw, rh, fps, nrem, spans, clip_dur, method, meas) -> int:
+    """spotlight / minimalist: FFmpeg makes the clean cut and the audio, Remotion draws the picture, FFmpeg muxes."""
+    ffmpeg = C.find_tool("ffmpeg")
+    dur = C.probe_video(stage1)["duration"]
+    frames = max(1, int(round(dur * fps)))
+    pub = R.stage_public(work, stage1)
+    hook_lines = None
+    if a.hook_text:
+        hook_lines = [x.strip() for x in a.hook_text.replace("\\n", "\n").split("\n") if x.strip()][: style["hook_text"]["max_lines"]]
+    keyword = (a.keyword or brand["cta"].get("keyword") or "").upper()
+    end_text = None
+    if a.keyword or a.end_card or brand["cta"].get("keyword"):
+        E = style["end_card"]
+        if "{KEYWORD}" in E["text_template"] and keyword:
+            end_text = E["text_template"].replace("{KEYWORD}", keyword)
+        else:
+            end_text = brand["cta"]["end_card"].format(keyword=keyword, text=brand["cta"]["text"]) if keyword else brand["cta"]["text"]
+    hook_s = min(style["hook_text"]["max_s"], dur)
+    end_s = style["end_card"]["last_s"]
+    props_brand = R.build_brand_props(brand, pub, hook_lines, hook_s, end_text, end_s, show_logo=not a.no_logo and style["logo"].get("enabled", True))
+    comp = style["composition"]
+    print(f"[3/5] planning '{a.style}' from the cleaned transcript...", flush=True)
+    notes = {}
+    if comp == "Spotlight":
+        face_y = a.face_y if a.face_y is not None else style.get("spotlight", {}).get("face_y_frac", 0.36)
+        case = style["captions"]["case"] if style["captions"]["case"] != "as_spoken" else brand["captions"].get("case", "as_spoken")
+        extra = {x.lower() for x in style["captions"].get("emphasis", {}).get("extra_words", [])}
+        job = R.plan_spotlight(out_words, dur, case, extra)
+        job.update({"src": "host/cut.mp4", "frames": frames, "sourceSize": {"w": rw, "h": rh}, "faceX": rw / 2, "faceY": rh * face_y,
+                    "captionTop": {"full": 1230, "window": 905, "panel": 905}})
+        props = {"brand": props_brand, "job": job}
+        notes = {"scenes": len(job["scenes"]), "large_panels": len(job["swaps"]), "key_phrase_cards": len(job["beats"]),
+                 "caption_words": len(job["words"])}
+    else:
+        plan = R.plan_minimalist(out_words, frames, hook_s if hook_lines else 0.0, end_s if end_text else 0.0, props_brand["theme"]["widthFactor"])
+        plan["source"] = {"src": "host/cut.mp4", "durationInFrames": frames}
+        plan.pop("fontWidthFactor", None)
+        check = R.validate_minimalist(plan, work)
+        # drop a takeover that fails layout rather than failing the render
+        guard = 0
+        while not check["valid"] and plan["takeovers"] and guard < 12:
+            guard += 1
+            print(f"  planner: {check['errors'][0]}", flush=True)
+            msg = check["errors"][0]
+            bad = next((t for t in plan["takeovers"] if msg.startswith(t["id"] + ":")), plan["takeovers"][-1])
+            plan["takeovers"].remove(bad)
+            check = R.validate_minimalist(plan, work)
+        if not check["valid"]:
+            sys.exit("Minimalist plan is invalid: " + "; ".join(check["errors"]))
+        for w in check.get("warnings", []):
+            print(f"  planner warning: {w}", flush=True)
+        props = {"brand": props_brand, "plan": plan}
+        notes = {"takeovers": len(plan["takeovers"]), "icons": [t["icon"] for t in plan["takeovers"]], "planner_warnings": check.get("warnings", [])}
+        if not plan["takeovers"]:
+            print("WARNING: the clip has no sentence that fits a takeover (needs 3+ seconds of speaker before each). Output is the plain speaker.", file=sys.stderr)
+    picture = work / "picture.mp4"
+    print(f"[4/5] rendering {comp} with Remotion ({frames} frames)...", flush=True)
+    R.render_picture(comp, props, pub, picture, work)
+    C.run([ffmpeg, "-nostdin", "-y", "-loglevel", "error", "-i", picture, "-i", stage1, "-map", "0:v:0", "-map", "1:a:0", "-af", af,
+           "-vf", "scale=out_range=tv,format=yuv420p", "-c:v", "libx264", "-crf", style["format"]["crf"], "-preset", "medium", "-pix_fmt", "yuv420p", "-r", fps,
+           "-c:a", "aac", "-b:a", style["format"]["audio_bitrate"], "-movflags", "+faststart", "-t", f"{dur:.3f}", out])
+    stills = []
+    if not a.no_stills:
+        sd = out.parent / (out.stem + "_stills")
+        sd.mkdir(exist_ok=True)
+        for frac in (0.08, 0.5, 0.92):
+            p = sd / f"{out.stem}_{int(frac * 100):02d}.jpg"
+            C.run([ffmpeg, "-nostdin", "-y", "-loglevel", "error", "-ss", f"{dur * frac:.2f}", "-i", out, "-frames:v", "1", "-q:v", "3", p], check=False)
+            if p.exists():
+                stills.append(str(p))
+    report = {"style": a.style, "engine": "remotion", "brand": brand["name"], "input": str(a.input), "output": str(out), "transcribe": method,
+              "input_clip_s": round(clip_dur, 2), "output_s": round(dur, 2), "spans": len(spans), "fillers_or_repeats_removed": nrem,
+              "silence_removed_s": round(clip_dur - dur, 2), "words_out": len(out_words), "hook_text": bool(hook_lines),
+              "end_card_keyword": keyword or None, "stills": stills, **notes}
+    (work / "report.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
+    print("[5/5] done.", flush=True)
+    print(json.dumps(report, indent=2))
+    return 0
+
+
 # ---------------------------------------------------------------- main render
 def main(argv=None) -> int:
     C.utf8_stdio()
@@ -281,6 +363,7 @@ def main(argv=None) -> int:
     ap.add_argument("--keyword")
     ap.add_argument("--end-card", action="store_true", help="show the brand CTA in the last seconds even without a keyword")
     ap.add_argument("--face-x", type=float, default=0.5, help="0..1 horizontal face position for landscape input")
+    ap.add_argument("--face-y", type=float, default=None, help="0..1 vertical face position (spotlight style); default from the style")
     ap.add_argument("--words-json", help="corrected word list [{w,s,e}] on the input timeline (after --start)")
     ap.add_argument("--model", default="small.en", help="faster-whisper model (tiny.en, base.en, small.en, medium, large-v3)")
     ap.add_argument("--language", default="en")
@@ -292,6 +375,13 @@ def main(argv=None) -> int:
     ffmpeg = C.need_tool("ffmpeg")
     brand = C.load_brand(a.brand)
     style = C.load_style(a.style, brand, a.set)
+    remotion_style = style.get("engine") == "remotion"
+    if remotion_style:
+        ok, why = R.available()
+        if not ok:
+            sys.exit(f"Style '{a.style}' needs Node and Remotion, which are not ready: {why}\n"
+                     "Fix: python scripts/vs.py setup-remotion --install-node   (or rerun the installer)\n"
+                     "No-Node alternative with a similar look: --style spotlight-lite")
     src = Path(a.input).resolve()
     if not src.is_file():
         sys.exit(f"Input not found: {src}")
@@ -412,6 +502,9 @@ def main(argv=None) -> int:
         ln = f"loudnorm=I={A['target_lufs']}:TP={A['true_peak_db']}:LRA={A['lra']}"
     limit = 10 ** ((A["true_peak_db"] - 0.8) / 20)
     af = f"{af_pre},{ln},alimiter=limit={limit:.3f}:attack=3:release=40:level=0,aresample={A['sample_rate']}"
+
+    if remotion_style:
+        return render_remotion(a, style, brand, work, out, stage1, af, out_words, total, rw, rh, FPS, nrem, spans, clip_dur, method, meas)
 
     # 5. captions, overlays, layout
     ass = work / "captions.ass"

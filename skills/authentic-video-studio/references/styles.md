@@ -23,7 +23,24 @@ Styles are JSON files in `templates/styles/`. They are merged over `_defaults.js
 - Captions: up to 4 words on a dark strip, body font, the spoken word in the accent color.
 - No jump cuts. Pauses are still trimmed.
 
-This is an FFmpeg-only approximation of the Remotion-based Spotlight look. It needs no Node.
+This is the FFmpeg-only version. It needs no Node. The full version is `spotlight` below.
+
+## spotlight (Remotion)
+
+- Opening: full-frame presenter, zoom-out from 140% to 100% over 0.85 s. Then the presenter shrinks into a rounded window at the bottom, over the branded moving grid.
+- Key-phrase cards: a dark card above the window shows the three most distinctive words of a sentence, one at a time, the last in the accent color.
+- Large-panel moments: on about every third sentence the presenter returns to a near full-frame panel.
+- Captions: up to 5 words, active word in the accent color, numerals pop.
+- Face position: `--face-y 0.36` (fraction of the frame height) centres the crop on the face. Raise it if hair is cut off.
+- Brand: colors, fonts and logo come from `brand.yaml`; the dark card color is derived from the primary color.
+
+## minimalist (Remotion)
+
+- Full-frame presenter. On chosen sentences a dark radial takeover covers the frame with one icon and up to six words, the key word in the accent color.
+- Camera: push in during the takeover, then a bridge (continuous zoom through the cut) or a snap (hard cut with two softened frames), alternating.
+- At least three seconds of presenter between takeovers; the first takeover starts after the hook text.
+- Icons: twelve neutral gray icons shipped with the style (business, scissors, headphones and so on), chosen by keyword, each used at most twice.
+- Output is vertical 1080x1920 (the original template was 1920x1080; this version has a portrait layout).
 
 ## Common values you may override with `--set key=value`
 

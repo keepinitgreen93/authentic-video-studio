@@ -49,6 +49,10 @@ def _doctor(args: dict, **kwargs) -> str:
     return _run(["doctor", "--json"], 120)
 
 
+def _setup_remotion(args: dict, **kwargs) -> str:
+    return _run(["setup-remotion", "--install-node"], 1500)
+
+
 def _styles(args: dict, **kwargs) -> str:
     return _run(["styles"], 60)
 
@@ -82,7 +86,7 @@ def _render(args: dict, **kwargs) -> str:
     for flag in ("hook_text", "keyword", "words_json", "model", "workdir"):
         if args.get(flag):
             cmd += [f"--{flag.replace('_', '-')}", str(args[flag])]
-    for flag in ("start", "max_seconds", "face_x"):
+    for flag in ("start", "max_seconds", "face_x", "face_y"):
         if args.get(flag) is not None:
             cmd += [f"--{flag.replace('_', '-')}", str(args[flag])]
     for kv in args.get("set", []) or []:
@@ -96,9 +100,14 @@ _SCHEMAS = {
         "description": "Check that every dependency for Authentic Video Studio (FFmpeg, Python packages, fonts, speech model) is installed. Returns JSON with a fix command for anything missing. Run before the first render.",
         "parameters": {"type": "object", "properties": {}},
     },
+    "video_studio_setup_remotion": {
+        "name": "video_studio_setup_remotion",
+        "description": "Install what the spotlight and minimalist styles need: Node.js LTS (only if missing, downloaded into the studio folder with no admin rights), the Remotion npm packages and its headless Chrome. Safe to run again. Needs internet the first time.",
+        "parameters": {"type": "object", "properties": {}},
+    },
     "video_studio_styles": {
         "name": "video_studio_styles",
-        "description": "List the video template styles (list-the-ways, punch-caps, spotlight-lite) with a one-line description of each.",
+        "description": "List the video template styles (list-the-ways, punch-caps, spotlight-lite, spotlight, minimalist) with a one-line description of each. spotlight and minimalist need Node and Remotion; video_studio_doctor reports whether they are ready.",
         "parameters": {"type": "object", "properties": {}},
     },
     "video_studio_brand": {
@@ -121,19 +130,20 @@ _SCHEMAS = {
         "parameters": {"type": "object", "properties": {
             "input": {"type": "string", "description": "Raw video path"},
             "out": {"type": "string", "description": "Output mp4 path"},
-            "style": {"type": "string", "enum": ["list-the-ways", "punch-caps", "spotlight-lite"]},
+            "style": {"type": "string", "enum": ["list-the-ways", "punch-caps", "spotlight-lite", "spotlight", "minimalist"]},
             "brand": {"type": "string", "description": "Folder containing brand.yaml"},
             "hook_text": {"type": "string", "description": "Up to two lines, each 16 characters or fewer, separated by \\n"},
             "keyword": {"type": "string", "description": "CTA keyword for the end card"},
             "words_json": {"type": "string", "description": "Corrected word list [{w,s,e}] to drop false starts"},
             "start": {"type": "number"}, "max_seconds": {"type": "number"}, "face_x": {"type": "number"},
+            "face_y": {"type": "number", "description": "spotlight only: vertical face position 0..1 of the frame"},
             "model": {"type": "string"}, "workdir": {"type": "string"},
             "set": {"type": "array", "items": {"type": "string"}, "description": "Style overrides, e.g. zoom.max=1.1"}},
             "required": ["input", "out"]},
     },
 }
 _HANDLERS = {"video_studio_doctor": _doctor, "video_studio_styles": _styles, "video_studio_brand": _brand,
-             "video_studio_render": _render}
+             "video_studio_render": _render, "video_studio_setup_remotion": _setup_remotion}
 
 
 def _slash(raw_args: str) -> str:

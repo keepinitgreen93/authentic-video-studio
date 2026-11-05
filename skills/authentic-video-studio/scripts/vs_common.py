@@ -241,7 +241,7 @@ def load_brand(path=None) -> dict:
     if not path:
         brand, base = default, BRANDS_DIR
     else:
-        p = Path(path)
+        p = Path(path).resolve()  # absolute, because ffmpeg runs inside the work folder
         base = p if p.is_dir() else p.parent
         f = p / "brand.yaml" if p.is_dir() else p
         if not f.exists():

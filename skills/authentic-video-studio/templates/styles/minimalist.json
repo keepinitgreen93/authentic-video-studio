@@ -1,0 +1,18 @@
+{
+  "description": "The Minimalist (Remotion): full-frame speaker with dark radial takeovers, one icon and a few words per thought, camera push and snap returns. Needs Node (the installer adds it).",
+  "engine": "remotion",
+  "composition": "Minimalist",
+  "cuts": {
+    "enabled": false
+  },
+  "zoom": {
+    "mode": "none"
+  },
+  "layout": {
+    "mode": "full"
+  },
+  "end_card": {
+    "text_template": "{TEXT}",
+    "last_s": 2.4
+  }
+}

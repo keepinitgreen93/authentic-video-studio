@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="300" viewBox="0 0 360 300" fill="none">
+  <defs>
+    <linearGradient id="overthink-blue" gradientUnits="userSpaceOnUse" x1="58" y1="268" x2="279" y2="34">
+      <stop offset="0" stop-color="#9CA3AF"/>
+      <stop offset="0.48" stop-color="#DEE1E6"/>
+      <stop offset="1" stop-color="#FFFFFF"/>
+    </linearGradient>
+  </defs>
+  <path d="M111 267V220C77 198 57 164 58 119C60 66 98 33 151 31C207 28 251 57 264 101L265 115L292 154C296 160 292 169 284 169H266V193C266 215 248 232 226 232H211V267Z" fill="url(#overthink-blue)"/>
+  <path d="M118 92C118 73 133 64 155 64C180 64 199 78 199 100C199 119 188 127 172 136C160 143 154 148 154 160" stroke="#15202D" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="154" cy="190" r="11" fill="#15202D"/>
+</svg>

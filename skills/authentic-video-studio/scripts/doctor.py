@@ -73,6 +73,11 @@ def check() -> list[dict]:
         "python scripts/vs.py setup --model small.en", required=False)
     free = shutil.disk_usage(Path.home()).free / 1e9
     add("disk space", free > 3, f"{free:.1f} GB free", "Free at least 3 GB.", required=False)
+    try:
+        import vs_remotion
+        res.extend(vs_remotion.status())
+    except Exception as e:  # noqa
+        add("remotion", False, f"{type(e).__name__}: {e}", "Reinstall the studio", required=False)
     wsl = "WSL not required" if C.IS_WIN else "n/a"
     add("wsl", True, wsl, required=False)
     return res
@@ -100,7 +105,7 @@ def main() -> int:
             print(f"[{mark}] {r['name']}: {r['detail']}")
             if not r["ok"] and r["fix"]:
                 print(f"        fix: {r['fix']}")
-        print("\nREADY" if not failed else f"\nNOT READY: {len(failed)} required item(s) missing. Apply the fixes above, or run the installer.")
+        print(("\nREADY" + ("" if all(r["ok"] for r in res if r["name"].startswith("remotion")) else " (spotlight and minimalist styles need the remotion items above; spotlight-lite works without them)")) if not failed else f"\nNOT READY: {len(failed)} required item(s) missing. Apply the fixes above, or run the installer.")
     return 1 if failed else 0
 
 

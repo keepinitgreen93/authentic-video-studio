@@ -1,0 +1,28 @@
+{
+  "description": "Spotlight (Remotion): full-frame opening zoom-out, then a rounded presenter window over a branded moving grid, animated key-phrase cards above it, large-panel moments, karaoke captions. Needs Node (the installer adds it).",
+  "engine": "remotion",
+  "composition": "Spotlight",
+  "cuts": {
+    "enabled": false
+  },
+  "zoom": {
+    "mode": "none"
+  },
+  "layout": {
+    "mode": "full"
+  },
+  "captions": {
+    "case": "as_spoken",
+    "emphasis": {
+      "numerals": true,
+      "extra_words": []
+    }
+  },
+  "spotlight": {
+    "face_y_frac": 0.36
+  },
+  "end_card": {
+    "text_template": "{TEXT}",
+    "last_s": 2.4
+  }
+}
