@@ -9,7 +9,7 @@ This repo does not include or redistribute these. The installer downloads them f
 | Pillow, fonttools, PyYAML, numpy, requests, beautifulsoup4, pypdf, resvg-py | Branding onboarding | Permissive open-source licences |
 | Google Fonts (Poppins, Inter) | Default fonts | SIL Open Font Licence |
 | Node.js | Runs Remotion | MIT. Downloaded from https://nodejs.org |
-| Remotion 4.0.500, @remotion/cli | Draws the `spotlight` and `minimalist` styles | Remotion licence: free for individuals, non-profits, and for-profit companies with up to 3 employees; a company licence is required for larger for-profit organizations. https://www.remotion.dev/docs/license |
+| Remotion 4.0.500, @remotion/cli | Draws the `spotlight` and `minimalist` styles | Remotion License. https://www.remotion.dev/docs/license |
 | React and React DOM 18.3.1 | UI layer for Remotion | MIT |
 | TypeScript 5.5.4 | Type checking only | Apache-2.0 |
 | Chrome Headless Shell | Renders frames for Remotion | Chromium licences. Downloaded by `remotion browser ensure` |

@@ -61,7 +61,3 @@ npm ci
 npm run typecheck
 npm test            # 34 planner tests
 ```
-
-## Licence
-
-Remotion is free for individuals, non-profits, and for-profit companies with up to three employees. Larger for-profit companies need a Remotion company licence (https://www.remotion.dev/docs/license). Tell the user before rendering these styles for such a company, and offer `spotlight-lite`.

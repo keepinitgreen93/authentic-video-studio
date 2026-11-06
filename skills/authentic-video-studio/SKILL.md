@@ -4,7 +4,7 @@ description: Edit raw talking-head videos into branded vertical short-form video
 license: MIT
 compatibility: Needs FFmpeg and Python 3.10+. The spotlight and minimalist styles also need Node 18+, Remotion and its headless Chrome. The installer sets all of them up. Works offline after setup except for website branding and font downloads.
 metadata:
-  version: "0.2.0"
+  version: "0.2.1"
   homepage: https://github.com/keepinitgreen93/authentic-video-studio
 ---
 
@@ -48,7 +48,7 @@ Paths are relative to this skill folder. Pass `--brand` a folder that holds `bra
 | `spotlight` | Remotion. Opening zoom-out, presenter window over the moving grid, animated key-phrase cards, large-panel moments, karaoke captions | Explainers where on-screen graphics help |
 | `minimalist` | Remotion. Full-frame speaker, dark takeovers with one icon and a few words, push in and snap back | Short lessons, one idea per thought |
 
-`spotlight` and `minimalist` need Node and Remotion. Run `vs.py doctor`; if the `remotion:` lines are not ok, run `vs.py setup-remotion --install-node`. If that cannot work (offline, locked machine), use `spotlight-lite`. Remotion is free for individuals, non-profits and companies with up to 3 employees; larger for-profit companies need a Remotion licence, so ask before using these two styles for them. Details: `references/remotion-styles.md`.
+`spotlight` and `minimalist` need Node and Remotion. Run `vs.py doctor`; if the `remotion:` lines are not ok, run `vs.py setup-remotion --install-node`. If that cannot work (offline, locked machine), use `spotlight-lite`. Details: `references/remotion-styles.md`.
 
 Details and every tunable value: `references/styles.md`. Override one value for one render with `--set zoom.max=1.1`.
 

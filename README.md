@@ -1,14 +1,20 @@
 # Authentic Video Studio
 
-Edit a raw talking-head clip into a branded 1080x1920 short-form video. It cuts dead air and filler words, adds captions, a hook, your logo and a call to action, and sets the loudness. It runs on your own computer with FFmpeg and Whisper. No API keys. No cloud upload. No WSL on Windows. Two of the five styles (`spotlight`, `minimalist`) draw their graphics with Remotion, which needs Node.js; the installer handles that.
+Turn a raw talking-head clip into a finished, branded short video for Reels, TikTok and Shorts. It cuts the dead air and filler words, adds captions, your logo and a call to action, and it all runs on your own computer.
 
-You can use it three ways:
+## The styles
 
-- **As an Agent Skill.** Drop `skills/authentic-video-studio` into Claude Code, Hermes or any agent that reads `SKILL.md`, and ask for a video.
-- **As a Hermes plugin.** `hermes plugins install` adds four tools and a `/video-studio` command.
-- **As a command line.** `python skills/authentic-video-studio/scripts/vs.py render ...`
+- **List the ways**: quick jump cuts for tips and lists, one big word at a time, a hook on top and a "drop a keyword" ending.
+- **Punch caps**: fast cuts and bold three-word ALL CAPS captions. Good for how-tos.
+- **Spotlight Lite**: you in a rounded window over a moving grid in your brand color, with captions that light up as you speak.
+- **Spotlight**: the same look with animated cards for your key phrases.
+- **Minimalist**: you full screen, with clean dark moments that show one icon and a few words for each idea.
 
-## 60-second quickstart
+Every style uses your colors, fonts and logo.
+
+## Get started in 3 steps
+
+**1. Install it with one command.**
 
 Windows (PowerShell):
 
@@ -18,7 +24,7 @@ cd authentic-video-studio
 powershell -ExecutionPolicy Bypass -File .\install.ps1
 ```
 
-macOS or Linux:
+Mac or Linux:
 
 ```bash
 git clone https://github.com/keepinitgreen93/authentic-video-studio
@@ -26,15 +32,39 @@ cd authentic-video-studio
 ./install.sh
 ```
 
-The installer sets up FFmpeg, a private Python environment, the packages, default fonts and the speech model. Then it sets up Node.js (only if you do not have version 18 or newer), the Remotion packages and Remotion's headless Chrome, and runs a check (`doctor`). It is safe to run again. Add `-SkipRemotion` (Windows) or `--skip-remotion` (macOS/Linux) if you only want the three FFmpeg styles.
+It sets up everything it needs. This takes several minutes the first time. No account, no API keys.
 
-**Then set up your brand. This is the first step after install.**
+**2. Set up your brand.** Send your website, your logo, or your brand kit (PDF, ZIP or folder). If you have none of those, it asks a few simple questions. You get a preview card to approve, and you can change anything later.
+
+**3. Give it a video and pick a style.** Say which clip, which style, and the hook words if you want them. You get back a finished 1080x1920 video.
+
+## The easy path
+
+Ask your AI agent (Claude Code, Hermes or any agent that reads skills):
+
+> Install this from https://github.com/keepinitgreen93/authentic-video-studio and set up my brand.
+
+The agent runs the install, asks for your website or logo, and then edits your videos. Nothing is uploaded anywhere.
+
+---
+
+## For the technical details
+
+You can use it three ways:
+
+- **As an Agent Skill.** Drop `skills/authentic-video-studio` into Claude Code, Hermes or any agent that reads `SKILL.md`.
+- **As a Hermes plugin.** `hermes plugins install` adds four tools and a `/video-studio` command.
+- **As a command line.** `python skills/authentic-video-studio/scripts/vs.py render ...`
+
+It uses FFmpeg and Whisper locally, with no WSL on Windows. `spotlight` and `minimalist` draw their graphics with Remotion, which needs Node.js; the installer handles that. Add `-SkipRemotion` (Windows) or `--skip-remotion` (macOS/Linux) to the installer if you only want the three FFmpeg styles. The installer is safe to run again, and it finishes with a check (`doctor`).
+
+Set up your brand from the command line:
 
 ```
 python skills/authentic-video-studio/scripts/vs.py brand --url https://your-site.com --out brand
 ```
 
-Or give it a logo (`--logo logo.png`), a brand kit (`--kit brand-kit.zip`), or just answers (`--name "Acme" --primary "#0A7C86"`). It writes `brand/brand.yaml`, a preview card (`brand/brand-preview.png`) and the fonts. Look at the card, say what to change, and the agent edits it for you. Details: [branding onboarding](skills/authentic-video-studio/references/branding-onboarding.md).
+Or use a logo (`--logo logo.png`), a brand kit (`--kit brand-kit.zip`), or answers (`--name "Acme" --primary "#0A7C86"`). It writes `brand/brand.yaml`, a preview card (`brand/brand-preview.png`) and the fonts. Details: [branding onboarding](skills/authentic-video-studio/references/branding-onboarding.md).
 
 Render a clip:
 
@@ -43,7 +73,7 @@ python skills/authentic-video-studio/scripts/vs.py render --input raw.mp4 --out 
   --style list-the-ways --brand brand --hook-text "7 WAYS TO\nEDIT FASTER" --keyword GUIDE
 ```
 
-No footage yet? `python skills/authentic-video-studio/scripts/vs.py demo --out demo-output --brand brand` renders a synthetic sample clip in every style (the Remotion styles are skipped if Node is not set up).
+No footage yet? `python skills/authentic-video-studio/scripts/vs.py demo --out demo-output --brand brand` renders a synthetic sample clip in every style.
 
 ## Branding onboarding
 
@@ -120,6 +150,4 @@ Everything runs locally. The only network calls are the website you name, Google
 
 ## License
 
-MIT. See [LICENSE](LICENSE). FFmpeg, Whisper models, fonts and the Python packages keep their own licences.
-
-Remotion has its own licence: free for individuals, non-profits and for-profit companies with up to three employees, and a paid company licence beyond that. Read it at https://www.remotion.dev/docs/license before using `spotlight` or `minimalist` commercially in a larger company. The other three styles do not use Remotion. See [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md).
+MIT. See [LICENSE](LICENSE). FFmpeg, Whisper models, fonts, Remotion and the other packages the installer downloads keep their own licences ([list](THIRD-PARTY-NOTICES.md)).

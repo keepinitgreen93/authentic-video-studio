@@ -1,6 +1,6 @@
 {
   "name": "authentic-video-studio-remotion",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": true,
   "engines": {"node": ">=18"},
   "description": "Remotion compositions for the spotlight and minimalist styles. Props come from vs.py; nothing here is brand specific.",

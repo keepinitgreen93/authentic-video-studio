@@ -147,7 +147,6 @@ Ground rules:
 - Run everything locally. Never upload, post or send a video. Give the user the file path.
 - This project needs no API keys. Do not ask for any. Never print secrets you happen to see.
 - Do not use WSL or Docker. Do not install with admin rights unless the user agrees. Do not install or upgrade Node system-wide; the installer's portable Node is enough.
-- Remotion needs a licence for for-profit companies with more than three employees. If the user is such a company, tell them before rendering `spotlight` or `minimalist` and offer `spotlight-lite`.
 - Do not put the user's footage, `brand/` folders or client files inside this repo.
 - Report only what tools returned. If a command fails, show the error and the fix you tried.
 - On Windows in git-bash, pass `C:/Users/...` paths to native programs. Unset `PYTHONPATH` before running Python, or use `python -I`.
